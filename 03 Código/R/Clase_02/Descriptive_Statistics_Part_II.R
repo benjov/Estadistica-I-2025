@@ -17,7 +17,7 @@ library(readxl)
 
 getwd()
 # Set Working Directory
-setwd("/Users/benjamin/Documents/Personal/Cursos_CIDE/Estadistica_I_2024/Estadistica_I_2024/03 Código/R/Clase_02")
+setwd("/Users/benjamin/Documents/Personal/Cursos_CIDE/Estadistica_I_2025/Estadistica-I-2025/03 Código/R/Clase_02")
 
 getwd()
 

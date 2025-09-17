@@ -6,22 +6,32 @@
 #install.packages("tidyverse")
 #install.packages("hrbrthemes")
 #install.packages("data.table")
+#install.packages("readxl")
 
 library(tidyverse) # The tidyverse is an collection of R packages. 
 library(ggplot2) #
 library(hrbrthemes)
 library(data.table)
+library(readxl)
 
 #****************************************************************************
 
 # Load the dataset
-url <- "http://www.cre.gob.mx/da/PreciosPromedioMensuales.csv"
+url <- "https://www.cre.gob.mx/da/Precios_promedio_diarios_y_mensuales_en_estaciones_de_servicio.xlsx"
 
-data <- read.csv(url, fileEncoding = "latin1", skip = 1)
+nombre_archivo <- "Precios_PROMEDIO_CRE.xlsx"
 
+# Descargar y guardar el archivo en el directorio de trabajo
+download.file(url, destfile = nombre_archivo, mode = "wb")
+
+# Leer la hoja "Cuadro 1.1", omitiendo las primeras 3 filas
+data <- read_excel(nombre_archivo, sheet = "Cuadro 1.1", skip = 3)
 
 # Show the first few rows of the dataframe
 head(data)
+
+#
+tail(data)
 
 # Display the structure of the dataframe
 str(data)
@@ -33,8 +43,7 @@ dim(data)
 names(data)
 
 # Select columns
-data_monthly <- data[ , c( "FechaCalendario", "Gasolina.mínimo.87.octanos.1", 
-                           "Gasolina.mínimo.91.octanos.1", "Diésel.1" ) ]
+data_monthly <- data[ , c( "Fecha", "Gasolina Regular", "Gasolina Premium", "Diésel" ) ]
 
 # Assign new names
 names(data_monthly) <- c( "Fecha", "Gasolina.Regular", "Gasolina.Premium", "Diesel" )
@@ -93,17 +102,29 @@ write.csv( data_monthly_clean,
 # 2. Realice un histograma donde incluya los 3 estados para cada uno de los tipos de combustible
 # 3. Guarde sus gráficos (3)
 # 4. Enviar código y resultado por correo
-# 5. Fecha de entrega: 16 de octubre de 2024
+# 5. Fecha de entrega: 24 de septiembre de 2025
 
 # Hint:
 # Select columns
-data_state <- data[ , c( "Entidad.federativa", "Gasolina.mínimo.87.octanos", "Año.reporte", "Mes" ) ]
 
-data_state$Period <- paste0( data_state$Año.reporte, '-', data_state$Mes)
+# Load the dataset
+url <- "https://www.cre.gob.mx/da/Precios_promedio_diarios_y_mensuales_en_estaciones_de_servicio.xlsx"
 
-filter(data_state, Entidad.federativa == 'Aguascalientes')
+nombre_archivo <- "Precios_PROMEDIO_CRE.xlsx"
 
-data_state %>% filter(Entidad.federativa == 'Aguascalientes')
+# Descargar y guardar el archivo en el directorio de trabajo
+download.file(url, destfile = nombre_archivo, mode = "wb")
 
-# Quizá necesite usar la función 'rbind'
+# Leer la hoja "Cuadro 1.1", omitiendo las primeras 3 filas
+data_edo <- read_excel(nombre_archivo, sheet = "Cuadro 1.2", skip = 4)
+# nota: Los Cuadro 1.2, Cuadro 1.3 y Cuadro 1.2 contienen los precios de los combustibles
+
+# Show the first few rows of the dataframe
+head(data_edo)
+
+data_edo <- data_edo[1:33, ]
+
+names(data_edo) <- c( "Estado" ) # Renombramos la primer columna
+
+View( data_edo[c(2), ] )
 
