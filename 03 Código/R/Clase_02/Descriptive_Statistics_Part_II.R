@@ -9,7 +9,7 @@
 
 library(tidyverse) # The tidyverse is an collection of R packages. 
 library(ggplot2) #
-library(hrbrthemes)
+#library(hrbrthemes)
 library(data.table)
 library(readxl)
 
@@ -52,7 +52,8 @@ data_long %>% filter( Variable.Year == 'Total.2000' |
                       Variable.Year == 'Total.2020' ) %>% 
   ggplot( aes(x=Variable.Year, y=Escolaridad, fill=Variable.Year )) + 
   geom_boxplot(alpha=0.3) +
-  theme(legend.position="none")
+  theme(legend.position="none") + 
+  labs(title = "Educación promedio por estado según año censal")
 
 ggsave("Total.png", width = 20, height = 15, units = "cm")
 
@@ -63,7 +64,8 @@ data_long %>% filter( Variable.Year == 'Hombres.2000' |
                         Variable.Year == 'Hombres.2020' ) %>% 
   ggplot( aes(x=Variable.Year, y=Escolaridad, fill=Variable.Year )) + 
   geom_boxplot(alpha=0.3) +
-  theme(legend.position="none")
+  theme(legend.position="none") + 
+  labs(title = "Educación promedio de los hombres por estado según año censal")
 
 ggsave("Hombres.png", width = 20, height = 15, units = "cm")
 
@@ -74,7 +76,8 @@ data_long %>% filter( Variable.Year == 'Mujeres.2000' |
                         Variable.Year == 'Mujeres.2020' ) %>% 
   ggplot( aes(x=Variable.Year, y=Escolaridad, fill=Variable.Year )) + 
   geom_boxplot(alpha=0.3) +
-  theme(legend.position="none")
+  theme(legend.position="none") + 
+  labs(title = "Educación promedio de las mujeres por estado según año censal")
 
 ggsave("Mujeres.png", width = 20, height = 15, units = "cm")
 
