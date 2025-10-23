@@ -101,7 +101,6 @@ dis2 <- update(
 )
 
 # --------------------------------------------------------------------
-
 # Promedio de ingreso per cápita por decil (con error estándar)
 prom_por_decil <- svyby(
   ~ ing_pc, ~ decil, dis2, svymean, na.rm = TRUE, vartype = "se"
@@ -112,7 +111,8 @@ prom_por_decil
 
 names(prom_por_decil)
 
-cbind( prom_por_decil$decil, prom_por_decil$ing_pc)
+# Ingresos promedio mensual por deciles de ingreso de los hogares:
+cbind( prom_por_decil$decil, prom_por_decil$ing_pc/3)
 
 # --------------------------------------------------------------------
 # Tarea:
@@ -124,3 +124,4 @@ cbind( prom_por_decil$decil, prom_por_decil$ing_pc)
 
 # Fecha de entrega: 29 de octubre de 2025
 
+# --------------------------------------------------------------------
