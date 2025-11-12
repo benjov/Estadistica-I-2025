@@ -138,12 +138,3 @@ for (n in sample_sizes) {
 par(mfrow = c(1, 1))
 
 # ----------------------------------------------
-# Tareas
-# ----------------------------------------------
-
-# 1. Analizar cómo cambios en la volatilidad (sigma) afectan el precio de la opción.
-#    Parámetros a explorar: sigma = c(0.1, 0.3, 0.5).
-#    Escribir un pequeño reporte explicando los resultados.
-
-# 2. Simular una media muestral (n = 10, 50, 100, 500) para una distribución exponencial
-#    Mostrar cómo converge hacia la normalidad (teorema central del límite).
